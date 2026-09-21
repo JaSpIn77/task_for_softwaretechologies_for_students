@@ -1,5 +1,7 @@
 package org.softwaretechnologies;
 
+
+
 public final class ArrayFunctions {
 
     private ArrayFunctions() {
@@ -10,7 +12,34 @@ public final class ArrayFunctions {
      * @param array массив, который будет перевернут.
      */
     public static void reverse(int[] array) {
-        // TODO: реализуйте вышеуказанную функцию
+        int left = 0;
+        int right = array.length - 1;
+
+        while (left < right) {
+            int temp = array[left];
+            array[left] = array[right];
+            array[right] = temp;
+
+            left++;
+            right--;
+        }
+    }
+    public static void main(String[] args) {
+        int[] array = {1, 2, 3, 4, 5};
+
+        System.out.println("Исходный массив:");
+        printArray(array);
+        reverse(array);
+
+        System.out.println("Массив после разворота:");
+        printArray(array);
+    }
+
+    private static void printArray(int[] array) {
+        for (int value : array) {
+            System.out.print(value + " ");
+        }
+        System.out.println();
     }
 
     /**
@@ -24,6 +53,25 @@ public final class ArrayFunctions {
      * @param matrix матрица, в которой столбцы будут заменены на строки.
      */
     public static void rotateMatrix(int[][] matrix) {
-        // TODO: реализуйте вышеуказанную функцию
+        if (matrix == null || matrix.length == 0) {
+            System.out.println("Матрица не квадратная");
+            return;
+        }
+        int n = matrix.length;
+
+        for (int i = 0; i < n; i++) {
+            if (matrix[i] == null || matrix[i].length != n) {
+                System.out.println("Матрица не квадратная");
+                return;
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
     }
 }
