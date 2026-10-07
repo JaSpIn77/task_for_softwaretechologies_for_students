@@ -10,8 +10,11 @@ public class ExceptionTask {
      */
     public static void printMessage() {
         throwRuntimeException();
-        // TODO: реализуйте вышеуказанную функцию
-
+        try{
+            System.out.println("Вызвана функция printMessage");
+        } catch (RuntimeException e) {
+            throwRuntimeException();
+        }
     }
 
     /**
@@ -20,8 +23,11 @@ public class ExceptionTask {
      Вызвана функция printMessage2
      */
     public static void printMessage2() throws Exception {
-        throwCatchableException();
-        // TODO: реализуйте вышеуказанную функцию
+        try {
+            System.out.println("Вызвана функция printMessage2");
+        } catch (Exception e) {
+            throwCatchableException();
+        }
     }
 
     private static void throwCatchableException() throws Exception {
