@@ -46,9 +46,12 @@ public class ExceptionTask {
      * @throws DivideOnNullException если divisor равен 0
      */
     public static int divide(int dividend, int divisor) throws DivideOnNullException {
-
-        // TODO: реализуйте вышеуказанную функцию
-        return dividend/divisor;
+        try{
+            return dividend/divisor;
+        }
+        catch (ArithmeticException e){
+            throw new DivideOnNullException(e);
+        }
     }
 
     /**
