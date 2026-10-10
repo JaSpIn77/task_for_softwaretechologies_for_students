@@ -27,7 +27,6 @@ public class Money {
     @Override
     public boolean equals(Object o) {
         // TODO: реализуйте вышеуказанную функцию
-
         return false;
     }
 
