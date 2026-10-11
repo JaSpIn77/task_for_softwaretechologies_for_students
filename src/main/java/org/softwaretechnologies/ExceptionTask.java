@@ -64,10 +64,14 @@ public class ExceptionTask {
      * @return конкатенацию двух строк: кротчайшую из двух строк с другой строкой.
      */
     public static Optional<String> mergeStrings(String first, String second) {
-        // TODO: реализуйте вышеуказанную функцию
-
-
-
-        return Optional.of(first.length() > second.length() ? first + second : second + first);
+        try{
+            return Optional.of(first.length() > second.length() ? first + second : second + first);
+        }catch (NullPointerException e) {
+            try {
+                return (first == null) ? Optional.of(second) : Optional.of(first);
+            } catch (NullPointerException ex) {
+                return Optional.empty();
+            }
+        }
     }
 }
