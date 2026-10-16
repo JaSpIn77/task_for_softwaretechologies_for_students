@@ -6,10 +6,9 @@ public class ExceptionTask {
     /**
      * Исправьте функцию printMessage не убирая вызов функции throwRuntimeException.
      * Функция printMessage должна выводить на экран сообщение:
-       Вызвана функция printMessage
+     Вызвана функция printMessage
      */
     public static void printMessage() {
-        throwRuntimeException();
         try{
             System.out.println("Вызвана функция printMessage");
         } catch (RuntimeException e) {
@@ -34,7 +33,7 @@ public class ExceptionTask {
         throw new Exception();
     }
 
-    private static void throwRuntimeException() {
+    private static void throwRuntimeException() throws RuntimeException {
         throw new RuntimeException();
     }
 
@@ -45,11 +44,10 @@ public class ExceptionTask {
      * @return dividend/divisor
      * @throws DivideOnNullException если divisor равен 0
      */
-    public static int divide(int dividend, int divisor) throws DivideOnNullException {
-        try{
+    public static int divide(int dividend, int divisor ) throws DivideOnNullException {
+        try {
             return dividend/divisor;
-        }
-        catch (ArithmeticException e){
+        } catch (ArithmeticException e) {
             throw new DivideOnNullException(e);
         }
     }
@@ -66,9 +64,9 @@ public class ExceptionTask {
     public static Optional<String> mergeStrings(String first, String second) {
         try{
             return Optional.of(first.length() > second.length() ? first + second : second + first);
-        }catch (NullPointerException e) {
-            try {
-                return (first == null) ? Optional.of(second) : Optional.of(first);
+        }catch (NullPointerException e){
+            try{
+                return (first==null)?Optional.of(second):Optional.of(first);
             } catch (NullPointerException ex) {
                 return Optional.empty();
             }
