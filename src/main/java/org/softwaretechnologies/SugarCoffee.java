@@ -7,6 +7,23 @@ package org.softwaretechnologies;
 //     к описанию добавьте " + sugar"
 //     */
 
-public class SugarCoffee {
+public class SugarCoffee implements CoffeeInterface{
 
+    private String description = " + sugar";
+    private int cost = 20;
+
+    public SugarCoffee(CoffeeInterface coffee) {
+        this.cost = coffee.getCost()+this.cost;
+        this.description = coffee.description()+this.description;
+    }
+
+    @Override
+    public int getCost() {
+        return this.cost;
+    }
+
+    @Override
+    public String description() {
+        return this.description;
+    }
 }
