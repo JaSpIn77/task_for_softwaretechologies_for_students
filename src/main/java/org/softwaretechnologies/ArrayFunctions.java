@@ -1,6 +1,6 @@
 package org.softwaretechnologies;
 
-
+import java.util.Arrays;
 
 public final class ArrayFunctions {
 
@@ -12,65 +12,36 @@ public final class ArrayFunctions {
      * @param array массив, который будет перевернут.
      */
     public static void reverse(int[] array) {
-        int left = 0;
-        int right = array.length - 1;
-
-        while (left < right) {
-            int temp = array[left];
-            array[left] = array[right];
-            array[right] = temp;
-
-            left++;
-            right--;
+        if(array.length==0||array.length==1) return;
+        int cache;
+        for (int i = 0; i < array.length/2; i++) {
+            cache = array[i];
+            array[i]=array[array.length-i-1];
+            array[array.length-i-1]=cache;
         }
-    }
-    public static void main(String[] args) {
-        int[] array = {1, 2, 3, 4, 5};
-
-        System.out.println("Исходный массив:");
-        printArray(array);
-        reverse(array);
-
-        System.out.println("Массив после разворота:");
-        printArray(array);
-    }
-
-    private static void printArray(int[] array) {
-        for (int value : array) {
-            System.out.print(value + " ");
-        }
-        System.out.println();
     }
 
     /**
      * Функция, заменяющая строки матрицы на столбцы матрицы. Пример:
-       1  2  3     1  4  7
-       4  5  6     2  5  8
-       7  8  9     3  6  9
+     1  2  3     1  4  7
+     4  5  6     2  5  8
+     7  8  9     3  6  9
      * Функция работает только с квадратными матрицами.
      * Если матрица не квадратная, то выведете на экран сообщение:
-       Матрица не квадратная
+     Матрица не квадратная
      * @param matrix матрица, в которой столбцы будут заменены на строки.
      */
     public static void rotateMatrix(int[][] matrix) {
-        if (matrix == null || matrix.length == 0) {
+        if(matrix.length!=matrix[0].length){
             System.out.println("Матрица не квадратная");
             return;
         }
-        int n = matrix.length;
-
-        for (int i = 0; i < n; i++) {
-            if (matrix[i] == null || matrix[i].length != n) {
-                System.out.println("Матрица не квадратная");
-                return;
-            }
-        }
-
-        for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) {
-                int temp = matrix[i][j];
-                matrix[i][j] = matrix[j][i];
-                matrix[j][i] = temp;
+        int cache;
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;i>j;j++){
+                cache = matrix[i][j];
+                matrix[i][j]=matrix[j][i];
+                matrix[j][i]=cache;
             }
         }
     }
